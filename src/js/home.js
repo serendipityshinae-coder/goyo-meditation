@@ -2,6 +2,7 @@ import { TIME_SLOTS } from '../data/content.js';
 import { setBackgroundOverride, applyBackground, getActiveTimeSlot } from './timeSlot.js';
 import { isReduceMotionEnabled } from './accessibility.js';
 import { loadData } from './storage.js';
+import { playHomeAmbient } from './music.js';
 
 function getImageUrl(slot) {
   return slot.localImage || slot.image;
@@ -29,6 +30,7 @@ function renderThemeCards(onThemeSelect) {
         <span class="home-theme-card__overlay">
           <span class="home-theme-card__label">${slot.label}</span>
           <span class="home-theme-card__desc">${slot.description.replace(/\n/g, '<br />')}</span>
+          <span class="home-theme-card__play-hint">♪ 눌러서 듣기</span>
         </span>
       </button>
     `
@@ -41,12 +43,13 @@ function renderThemeCards(onThemeSelect) {
     btn.setAttribute('aria-pressed', btn.dataset.homeTheme === activeId ? 'true' : 'false');
     btn.addEventListener('click', () => {
       const slotId = btn.dataset.homeTheme;
+      const slot = TIME_SLOTS.find((s) => s.id === slotId);
+
       setBackgroundOverride(slotId);
-      applyBackground(
-        TIME_SLOTS.find((s) => s.id === slotId),
-        isReduceMotionEnabled()
-      );
+      applyBackground(slot, isReduceMotionEnabled());
       updateHomePreview(slotId);
+      playHomeAmbient(slotId);
+
       grid.querySelectorAll('[data-home-theme]').forEach((b) => {
         b.setAttribute('aria-pressed', b.dataset.homeTheme === slotId ? 'true' : 'false');
       });

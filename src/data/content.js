@@ -8,6 +8,7 @@ export const TIME_SLOTS = [
     image:
       'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=2400&q=80',
     localImage: '/assets/backgrounds/background-dawn.jpg',
+    ambientYoutubeId: 'Nd7e4SNjGBM',
   },
   {
     id: 'morning',
@@ -18,6 +19,7 @@ export const TIME_SLOTS = [
     image:
       'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=2400&q=80',
     localImage: '/assets/backgrounds/background-morning.jpg',
+    ambientYoutubeId: 'nMfmwGoLl0w',
   },
   {
     id: 'day',
@@ -28,6 +30,7 @@ export const TIME_SLOTS = [
     image:
       'https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=2400&q=80',
     localImage: '/assets/backgrounds/background-day.jpg',
+    ambientYoutubeId: 'lFcxdS2_YAM',
   },
   {
     id: 'sunset',
@@ -38,6 +41,7 @@ export const TIME_SLOTS = [
     image:
       'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=2400&q=80',
     localImage: '/assets/backgrounds/background-sunset.jpg',
+    ambientYoutubeId: 'lE6I8YY11y8',
   },
   {
     id: 'night',
@@ -48,54 +52,176 @@ export const TIME_SLOTS = [
     image:
       'https://images.unsplash.com/photo-1507400492013-162706c8c05e?auto=format&fit=crop&w=2400&q=80',
     localImage: '/assets/backgrounds/background-night.jpg',
+    ambientYoutubeId: 'rDy2L2OEkMM',
   },
 ];
 
-export const MUSIC_THEMES = [
+/** 명상 탭 전용 — 시간별 3개씩, 추천 콘텐츠와 ID 중복 없음 */
+export const MEDITATION_PLAYLISTS = [
   {
-    id: 'dawn',
-    label: '새벽',
-    title: '고요한 새벽 숲',
-    description: '고요한 피아노와\n새벽 공기',
-    type: '자연 소리·명상음악',
-    youtubeId: 'Nd7e4SNjGBM',
-    slotId: 'dawn',
+    id: '5-breath',
+    duration: 5,
+    title: '5분 호흡 명상',
+    description: '짧게 숨을 고르며\n마음을 가다듬어요',
+    type: '호흡·가이드',
+    youtubeId: 'inpok4MKVLM',
+    theme: 'morning',
   },
   {
-    id: 'morning',
-    label: '아침',
-    title: '아침 숲의 호흡',
-    description: '숲속 새소리와\n부드러운 멜로디',
+    id: '5-calm',
+    duration: 5,
+    title: '5분 마음 안정',
+    description: '바쁜 하루 속\n잠깐의 쉼표',
+    type: '가이드 명상',
+    youtubeId: '9HNt6kp0JN8',
+    theme: 'day',
+  },
+  {
+    id: '5-nature',
+    duration: 5,
+    title: '5분 자연 소리',
+    description: '숲의 소리와 함께\n짧게 명상해요',
+    type: '자연 소리',
+    youtubeId: 'Nd7e4SNjGBM',
+    theme: 'morning',
+  },
+  {
+    id: '10-forest',
+    duration: 10,
+    title: '숲속 10분 명상',
+    description: '숲의 소리와 함께\n천천히 호흡해요',
     type: '자연 소리·가이드',
     youtubeId: '4S3yJkGWM4E',
-    slotId: 'morning',
+    theme: 'morning',
   },
   {
-    id: 'day',
-    label: '낮',
-    title: '낮의 고요',
-    description: '마음을 가라앉히는\n잔잔한 선율',
+    id: '10-calm',
+    duration: 10,
+    title: '10분 마음 가라앉히기',
+    description: '복잡한 생각을\n내려놓는 시간',
     type: '가이드 명상',
     youtubeId: 'KKNKgQTJn0c',
-    slotId: 'day',
+    theme: 'day',
   },
   {
-    id: 'sunset',
-    label: '저녁',
-    title: '저녁 노을의 쉼',
-    description: '긴장을 풀어주는\n따뜻한 음악',
+    id: '10-anxiety',
+    duration: 10,
+    title: '10분 불안 완화',
+    description: '긴장된 마음을\n부드럽게 풀어요',
     type: '가이드 명상',
     youtubeId: 'O-6f5wQXSu8',
-    slotId: 'sunset',
+    theme: 'sunset',
   },
   {
-    id: 'night',
-    label: '밤',
-    title: '밤하늘 아래',
-    description: '깊은 잠을 위한\n편안한 명상음악',
-    type: '수면·명상음악',
-    youtubeId: 'aEqlQvczMJQ',
-    slotId: 'night',
+    id: '15-stress',
+    duration: 15,
+    title: '15분 스트레스 해소',
+    description: '몸과 마음의\n긴장을 내려놓아요',
+    type: '가이드 명상',
+    youtubeId: 'itZMM5gCboo',
+    theme: 'sunset',
+  },
+  {
+    id: '15-body',
+    duration: 15,
+    title: '15분 바디 스캔',
+    description: '몸의 감각에\n천천히 집중해요',
+    type: '바디 스캔',
+    youtubeId: 'ZToicYcHIOU',
+    theme: 'night',
+  },
+  {
+    id: '15-deep',
+    duration: 15,
+    title: '15분 깊은 이완',
+    description: '고요 속으로\n더 깊이 들어가요',
+    type: '가이드 명상',
+    youtubeId: 'Jyy0ra2WcQQ',
+    theme: 'night',
+  },
+];
+
+/** 추천 명상 콘텐츠 — 명상 플레이리스트와 다른 다양한 영상 */
+export const YOUTUBE_VIDEOS = [
+  {
+    id: 'aEqlQvczMJQ',
+    title: '편안한 잠을 위한 10분 명상',
+    type: '수면·가이드 명상',
+    duration: '약 10분',
+    channel: 'Goodful',
+    language: '영어 가이드',
+    recommendedSlots: ['night'],
+    defaultMinutes: 10,
+  },
+  {
+    id: '1ZYbU82GVz4',
+    title: '편안한 수면을 위한 명상 음악',
+    type: '수면·이완 음악',
+    duration: '약 10분',
+    channel: 'Peder B. Helland',
+    language: '음악',
+    recommendedSlots: ['night'],
+    defaultMinutes: 10,
+  },
+  {
+    id: '2OEL4P1Rz04',
+    title: '깊은 휴식을 위한 명상',
+    type: '이완·앰비언트',
+    duration: '약 15분',
+    channel: 'Soothing Relaxation',
+    language: '음악',
+    recommendedSlots: ['night', 'sunset'],
+    defaultMinutes: 15,
+  },
+  {
+    id: 'j7d5Plai03g',
+    title: '매일 10분 마음챙김',
+    type: '마음챙김·가이드',
+    duration: '약 10분',
+    channel: 'Goodful',
+    language: '영어 가이드',
+    recommendedSlots: ['day', 'morning'],
+    defaultMinutes: 10,
+  },
+  {
+    id: '8bBPJ1EEUCc',
+    title: '감사와 풍요를 여는 5분',
+    type: '감사·가이드 명상',
+    duration: '약 5분',
+    channel: 'Lavendaire',
+    language: '영어 가이드',
+    recommendedSlots: ['morning', 'day'],
+    defaultMinutes: 5,
+  },
+  {
+    id: '1vx8iUvfyCY',
+    title: '집중력을 높이는 명상',
+    type: '집중·마음챙김',
+    duration: '약 10분',
+    channel: 'Headspace',
+    language: '영어 가이드',
+    recommendedSlots: ['day'],
+    defaultMinutes: 10,
+  },
+  {
+    id: 'U9YKY7fdwyg',
+    title: '초보자를 위한 10분 명상',
+    type: '입문·가이드 명상',
+    duration: '약 10분',
+    channel: 'Goodful',
+    language: '영어 가이드',
+    recommendedSlots: ['sunset', 'morning'],
+    defaultMinutes: 10,
+  },
+  {
+    id: 'i50ZAs7v9es',
+    title: '5분 호흡으로 시작하기',
+    type: '호흡·입문',
+    duration: '약 5분',
+    channel: 'Great Meditation',
+    language: '영어 가이드',
+    recommendedSlots: ['morning', 'day'],
+    defaultMinutes: 5,
   },
 ];
 
@@ -113,60 +239,11 @@ export const BREATHING_PHRASES = [
   '몸의 긴장을 내려놓아요.',
 ];
 
-export const DURATION_OPTIONS = [5, 10, 20];
+export const DURATION_OPTIONS = [5, 10, 15];
 
-export const YOUTUBE_VIDEOS = [
-  {
-    id: '4S3yJkGWM4E',
-    title: '숲의 소리와 함께하는 10분 명상',
-    type: '자연 소리·가이드 명상',
-    duration: '약 10분',
-    channel: 'Goodful',
-    language: '영어 가이드',
-    recommendedSlots: ['morning', 'day'],
-    defaultMinutes: 10,
-  },
-  {
-    id: 'KKNKgQTJn0c',
-    title: '복잡한 마음을 가라앉히는 10분',
-    type: '가이드 명상',
-    duration: '약 10분',
-    channel: 'Great Meditation',
-    language: '영어 가이드',
-    recommendedSlots: ['day', 'sunset'],
-    defaultMinutes: 10,
-  },
-  {
-    id: 'O-6f5wQXSu8',
-    title: '불안한 마음을 위한 10분',
-    type: '가이드 명상',
-    duration: '약 10분',
-    channel: 'Goodful',
-    language: '영어 가이드',
-    recommendedSlots: ['day', 'sunset'],
-    defaultMinutes: 10,
-  },
-  {
-    id: 'aEqlQvczMJQ',
-    title: '편안한 잠을 위한 10분 명상',
-    type: '수면·가이드 명상',
-    duration: '약 10분',
-    channel: 'Goodful',
-    language: '영어 가이드',
-    recommendedSlots: ['night'],
-    defaultMinutes: 10,
-  },
-  {
-    id: 'Nd7e4SNjGBM',
-    title: '깊은 휴식을 위한 숲의 음악',
-    type: '자연 소리·명상음악',
-    duration: '장시간',
-    channel: 'Music for Body and Spirit',
-    language: null,
-    recommendedSlots: ['dawn', 'sunset', 'night'],
-    defaultMinutes: 20,
-  },
-];
+export function getPlaylistsByDuration(minutes) {
+  return MEDITATION_PLAYLISTS.filter((p) => p.duration === minutes);
+}
 
 export const STORAGE_KEY = 'goyo-data';
 

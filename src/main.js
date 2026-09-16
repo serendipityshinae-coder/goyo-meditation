@@ -36,7 +36,7 @@ import { initYouTube } from './js/youtube.js';
 import { initAccessibility, isReduceMotionEnabled } from './js/accessibility.js';
 import { initNavigation } from './js/navigation.js';
 import { initHome, updateHomePreview } from './js/home.js';
-import { initMusic, syncMusicWithTimer } from './js/music.js';
+import { initMusic, syncMusicWithTimer, renderPlaylistsForDuration, stopHomeAmbient } from './js/music.js';
 
 let calendarYear = new Date().getFullYear();
 let calendarMonth = new Date().getMonth();
@@ -125,10 +125,17 @@ function showStorageWarning() {
 
 function bindEvents() {
   document.querySelectorAll('[data-duration]').forEach((btn) => {
-    btn.addEventListener('click', () => setDuration(Number(btn.dataset.duration)));
+    btn.addEventListener('click', () => {
+      const minutes = Number(btn.dataset.duration);
+      setDuration(minutes);
+      renderPlaylistsForDuration(minutes);
+    });
   });
 
-  document.getElementById('timer-start')?.addEventListener('click', startTimer);
+  document.getElementById('timer-start')?.addEventListener('click', () => {
+    stopHomeAmbient();
+    startTimer();
+  });
   document.getElementById('timer-pause')?.addEventListener('click', pauseTimer);
   document.getElementById('timer-restart')?.addEventListener('click', restartTimer);
   document.getElementById('timer-complete-early')?.addEventListener('click', completeEarly);
@@ -172,9 +179,11 @@ function init() {
   });
 
   initAccessibility(() => refreshBackgroundUI());
-  initNavigation();
+  initNavigation((pageId) => {
+    if (pageId !== 'home') stopHomeAmbient();
+  });
   initHome(() => refreshBackgroundUI());
-  initMusic();
+  initMusic(lastDuration);
   refreshBackgroundUI();
 
   initTimer({

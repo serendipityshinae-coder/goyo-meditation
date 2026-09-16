@@ -1,3 +1,4 @@
+import { DURATION_OPTIONS } from '../data/content.js';
 import { updateData, loadData } from './storage.js';
 
 export function formatDateKey(date = new Date()) {
@@ -65,5 +66,6 @@ export function saveLastDuration(minutes) {
 }
 
 export function getLastDuration() {
-  return loadData().preferences.lastDuration ?? 10;
+  const saved = loadData().preferences.lastDuration ?? 10;
+  return DURATION_OPTIONS.includes(saved) ? saved : 10;
 }

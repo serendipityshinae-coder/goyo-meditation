@@ -6,7 +6,7 @@ const DEFAULT_DATA = {
     lastDuration: 10,
     backgroundOverride: null,
     reduceMotion: false,
-    musicTheme: null,
+    lastPlaylistId: null,
   },
   activeTimer: null,
 };
