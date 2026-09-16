@@ -1,0 +1,34 @@
+@keyframes backgroundZoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.06);
+  }
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.35;
+  }
+  50% {
+    transform: scale(1.12);
+    opacity: 0.55;
+  }
+}
+
+.breath-circle {
+  position: absolute;
+  width: min(220px, 60vw);
+  height: min(220px, 60vw);
+  border-radius: 50%;
+  border: 1px solid rgba(94, 234, 212, 0.25);
+  background: radial-gradient(circle, rgba(94, 234, 212, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.breath-circle--active {
+  animation: breathe 8s ease-in-out infinite;
+}

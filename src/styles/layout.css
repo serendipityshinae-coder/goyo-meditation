@@ -1,0 +1,57 @@
+.background {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background-color: var(--color-bg);
+  background-size: cover;
+  background-position: center;
+  transform: scale(1);
+}
+
+.background--animate {
+  animation: backgroundZoom 60s ease-in-out infinite alternate;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    180deg,
+    rgba(8, 12, 18, 0.45) 0%,
+    rgba(8, 12, 18, 0.35) 40%,
+    rgba(8, 12, 18, 0.5) 100%
+  );
+  pointer-events: none;
+}
+
+.panel {
+  background: var(--color-bg-panel);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-panel);
+}
+
+.panel--hero {
+  text-align: center;
+}
+
+.section-title {
+  margin: 0 0 var(--space-sm);
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.section-subtitle {
+  margin: 0 0 var(--space-lg);
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 640px) {
+  .panel {
+    padding: var(--space-lg);
+  }
+}
